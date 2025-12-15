@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 
 const ItemSchema = new mongoose.Schema({
-name: { type: String, required: true },
-description: { type: String },
-price: { type: Number, default: 0 },
+Priority : { type: String ,default: 'medium level'},
+Task: { type: String ,required: true},
+Workinghours: { type: Number, default: 0 },
 }, { timestamps: true });
 
 

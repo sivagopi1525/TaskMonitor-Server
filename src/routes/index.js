@@ -10,10 +10,10 @@ router.post('/login',loginController.Login);
 router.post('/register',loginController.Register);
 // items
 router.get('/items', auth.auth,itemController.listItems);
-router.get('/items/:id',auth.auth, itemController.getItem);
-router.post('/items', auth.auth,itemController.createItem);
-router.put('/items/:id', auth.auth,itemController.updateItem);
-router.delete('/items/:id', auth.auth,itemController.deleteItem);
+router.get('/item/:id',auth.auth, itemController.getItem);
+router.post('/item', auth.auth,itemController.createItem);
+router.put('/item/:id', auth.auth,itemController.updateItem);
+router.delete('/item/:id', auth.auth,itemController.deleteItem);
 
 
 module.exports = router;

@@ -1,11 +1,10 @@
-const item = require('../models/item');
 const Item = require('../models/item');
 
 
 // GET /api/items
 async function listItems(req, res) {
 try {
-const [items] = await Item.find().sort({ createdAt: -1 });
+const [items] = await Item.find({}).lean();
 return res.json(items);
 } catch (err) {
 console.error(err);
@@ -33,8 +32,8 @@ return res.status(400).json({ message: 'Invalid ID' });
 // POST /api/items
 async function createItem(req, res) {
 try {
-const { name, description, price } = req.body;
-const item = new Item({ name, description, price });
+const { Task, Priority, Workinghours } = req.body;
+const item = new Item({ Task, Priority, Workinghours });
 await item.save();
 return res.status(201).json(item);
 } catch (err) {
@@ -44,7 +43,7 @@ return res.status(400).json({ message: 'Bad request' });
 }
 
 
-// PUT /api/items/:id
+// PUT /api/item/:id
 async function updateItem(req, res) {
 try {
 const update = req.body;
@@ -58,7 +57,7 @@ return res.status(400).json({ message: 'Invalid request' });
 }
 
 
-// DELETE /api/items/:id
+// DELETE /api/item/:id
 async function deleteItem(req, res) {
 try {
 const item = await Item.findByIdAndDelete(req.params.id);
