@@ -4,7 +4,7 @@ const Item = require('../models/item');
 // GET /api/items
 async function listItems(req, res) {
 try {
-const [items] = await Item.find({}).lean();
+const items = await Item.find({}).lean();
 return res.json(items);
 } catch (err) {
 console.error(err);
@@ -32,8 +32,8 @@ return res.status(400).json({ message: 'Invalid ID' });
 // POST /api/items
 async function createItem(req, res) {
 try {
-const { Task, Priority, Workinghours } = req.body;
-const item = new Item({ Task, Priority, Workinghours });
+const { Task, Priority, Workinghours,Name,Date} = req.body;
+const item = new Item({ Task, Priority, Workinghours,Name,Date});
 await item.save();
 return res.status(201).json(item);
 } catch (err) {
