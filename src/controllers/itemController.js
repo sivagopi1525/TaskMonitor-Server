@@ -47,7 +47,7 @@ return res.status(400).json({ message: 'Bad request' });
 async function updateItem(req, res) {
 try {
 const update = req.body;
-const item = await Item.findByIdAndUpdate(req.params.id, update, { new: true, runValidators: true });
+const item = await Item.findByIdAndUpdate(req.query.id, update, { new: true, runValidators: true });
 if (!item) return res.status(404).json({ message: 'Item not found' });
 return res.json(item);
 } catch (err) {
@@ -57,16 +57,18 @@ return res.status(400).json({ message: 'Invalid request' });
 }
 
 
-// DELETE /api/item/:id
 async function deleteItem(req, res) {
-try {
-const item = await Item.findByIdAndDelete(req.params.id);
-if (!item) return res.status(404).json({ message: 'Item not found' });
-return res.json({ message: 'Deleted' });
-} catch (err) {
-console.error(err);
-return res.status(400).json({ message: 'Invalid request' });
+  try {
+    const item = await Item.findByIdAndDelete(req.query.id);
+    if (!item) {
+      return res.status(404).json({ message: "Item not found" });
+    }
+    return res.json({ message: "Deleted successfully" });
+  } catch (err) {
+    console.error(err);
+    return res.status(400).json({ message: "Invalid ID" });
+  }
 }
-}
+
 
 module.exports = { listItems, getItem, createItem, updateItem, deleteItem };
