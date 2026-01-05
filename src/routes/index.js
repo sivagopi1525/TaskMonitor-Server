@@ -10,6 +10,7 @@ router.post('/login',loginController.Login);
 router.post('/register',loginController.Register);
 // items
 router.get('/items', auth.auth,itemController.listItems);
+router.get('/fiteritems',auth.auth,itemController.getitemswithfilter)
 router.get('/item',auth.auth, itemController.getItem);
 router.post('/item', auth.auth,itemController.createItem);
 router.put('/item', auth.auth,itemController.updateItem);

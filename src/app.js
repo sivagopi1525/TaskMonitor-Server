@@ -16,6 +16,7 @@ app.use(morgan('combined'));
 
 // prefix all APIs with /api
 app.use('/api', routes);
+app.use('/api/task', routes);
 
 
 // generic 404
