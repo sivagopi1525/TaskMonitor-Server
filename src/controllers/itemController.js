@@ -70,8 +70,8 @@ async function getItem(req, res) {
 // POST /api/items
 async function createItem(req, res) {
   try {
-    const { Task, Priority, Workinghours, Name, Date } = req.body;
-    const item = new Item({ Task, Priority, Workinghours, Name, Date });
+    const {userId, Task, Priority, Workinghours, Name, Date } = req.body;
+    const item = new Item({ userId,Task, Priority, Workinghours, Name, Date });
     await item.save();
     return res.status(201).json(item);
   } catch (err) {
