@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const itemController = require('../controllers/itemController');
 const loginController = require('../controllers/loginController');
+const userController = require('../controllers/userController');
 const auth = require("../middlewares/auth");
 
 
@@ -15,6 +16,9 @@ router.get('/item',auth.auth, itemController.getItem);
 router.post('/item', auth.auth,itemController.createItem);
 router.put('/item', auth.auth,itemController.updateItem);
 router.delete('/item', auth.auth,itemController.deleteItem);
+
+// users
+router.get('/listUsers',auth.auth,userController.listUsers)
 
 
 module.exports = router;
